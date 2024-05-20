@@ -52,8 +52,7 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const apiKey = 'YOUR_API_KEY'; // Vervang door je eigen NewsAPI sleutel
-            const url = `https://newsapi.org/v2/everything?sources=de-volkskrant&from=2024-05-20&to=2024-05-20&sortBy=publishedAt&apiKey=${apiKey}`;
+            const url = 'http://127.0.0.1:5000/news';  // Vervang met de werkelijke API endpoint
 
             fetch(url)
                 .then(response => response.json())

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nieuws van Vandaag</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nieuws van de Volkskrant</h1>
+        </div>
+    </header>
+    <div class="container">
+        <ul id="news-articles">
+            <!-- Nieuwsartikelen zullen hier worden geladen -->
+        </ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiKey = 'YOUR_API_KEY'; // Vervang door je eigen NewsAPI sleutel
+            const url = `https://newsapi.org/v2/everything?sources=de-volkskrant&from=2024-05-20&to=2024-05-20&sortBy=publishedAt&apiKey=${apiKey}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const articles = data.articles;
+                    let output = '';
+                    articles.forEach(article => {
+                        output += `
+                            <li>
+                                <a href="${article.url}" target="_blank">
+                                    <h2>${article.title}</h2>
+                                    <p>${article.description}</p>
+                                </a>
+                            </li>
+                        `;
+                    });
+                    document.getElementById('news-articles').innerHTML = output;
+                })
+                .catch(error => console.log('Error:', error));
+        });
+    </script>
+</body>
+</html>

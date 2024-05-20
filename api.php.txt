@@ -1,0 +1,9 @@
+<?php
+header('Content-Type: application/json');
+
+$apiKey = 'YOUR_API_KEY'; // Vervang door je eigen NewsAPI sleutel
+$url = 'https://newsapi.org/v2/everything?sources=de-volkskrant&from=2024-05-20&to=2024-05-20&sortBy=publishedAt&apiKey=' . $apiKey;
+
+$response = file_get_contents($url);
+echo $response;
+?>

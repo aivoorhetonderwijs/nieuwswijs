@@ -47,10 +47,33 @@
     </header>
     <div class="container">
         <ul id="news-articles">
-            <li>Test nieuwsartikel 1</li>
-            <li>Test nieuwsartikel 2</li>
-            <li>Test nieuwsartikel 3</li>
+            <!-- Nieuwsartikelen zullen hier worden geladen -->
         </ul>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiKey = '19d4bbb11980489aad29cf99b72c6829';  // Vervang dit door je eigen NewsAPI sleutel
+            const url = `https://newsapi.org/v2/top-headlines?country=nl&apiKey=${apiKey}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const articles = data.articles;
+                    let output = '';
+                    articles.forEach(article => {
+                        output += `
+                            <li>
+                                <a href="${article.url}" target="_blank">
+                                    <h2>${article.title}</h2>
+                                    <p>${article.description}</p>
+                                </a>
+                            </li>
+                        `;
+                    });
+                    document.getElementById('news-articles').innerHTML = output;
+                })
+                .catch(error => console.log('Error:', error));
+        });
+    </script>
 </body>
 </html>

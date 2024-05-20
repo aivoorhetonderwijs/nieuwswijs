@@ -42,37 +42,15 @@
 <body>
     <header>
         <div class="container">
-            <h1>Nieuws van de Volkskrant</h1>
+            <h1>Nieuws van Vandaag</h1>
         </div>
     </header>
     <div class="container">
         <ul id="news-articles">
-            <!-- Nieuwsartikelen zullen hier worden geladen -->
+            <li>Test nieuwsartikel 1</li>
+            <li>Test nieuwsartikel 2</li>
+            <li>Test nieuwsartikel 3</li>
         </ul>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const url = 'http://127.0.0.1:5000/news';  // Vervang met de werkelijke API endpoint
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const articles = data.articles;
-                    let output = '';
-                    articles.forEach(article => {
-                        output += `
-                            <li>
-                                <a href="${article.url}" target="_blank">
-                                    <h2>${article.title}</h2>
-                                    <p>${article.description}</p>
-                                </a>
-                            </li>
-                        `;
-                    });
-                    document.getElementById('news-articles').innerHTML = output;
-                })
-                .catch(error => console.log('Error:', error));
-        });
-    </script>
 </body>
 </html>
